@@ -1,0 +1,35 @@
+{
+	"name": "phaser3-parcel-template",
+	"version": "1.0.0",
+	"description": "A template project for Kabooom.js using Parceljs",
+	"scripts": {
+		"start:space": "parcel serve src/space/index.html src/space/*/index.html -p 3000",
+		"build:space": "parcel build src/space/*/index.html --dist-dir dist",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"browserslist": "> 0.2%",
+	"author": "supertommy",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ourcade/phaser3-parcel-template.git"
+	},
+	"homepage": "https://github.com/ourcade/phaser3-parcel-template",
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"minimist": ">=1.2.2",
+		"parcel": "^2.0.0-rc.0",
+		"parcel-reporter-static-files-copy": "^1.3.0",
+		"typescript": "^4.3.2"
+	},
+	"dependencies": {
+		"kaboom": "^0.5.1",
+		"phaser": "^3.55.2"
+	},
+	"alias": {
+		"kaboom": "./node_modules/kaboom/dist/kaboom.mjs"
+	},
+	"staticFiles": {
+		"staticPath": "public"
+	}
+}
