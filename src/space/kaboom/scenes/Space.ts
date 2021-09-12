@@ -18,14 +18,12 @@ const {
 	destroy
 } = k
 
-// showcase this formula (for thrust video as well)
 function angleToVec2(angle: number) {
 	const vx = Math.cos(-angle)
 	const vy = Math.sin(-angle)
 	return vec2(vx, vy)
 }
 
-// showcase this component
 function bullet(vx: number, vy: number) {
 	const velocity = vec2(vx, vy)
 	return {
@@ -104,6 +102,11 @@ function thrust() {
 }
 
 export default function Space() {
+	add([
+		pos(16, 0),
+		sprite('logo')
+	])
+
 	const ship = add([
 		sprite('ship'),
 		pos(width() * 0.5, height() * 0.5),

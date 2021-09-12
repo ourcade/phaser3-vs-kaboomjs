@@ -3,10 +3,11 @@
 	"version": "1.0.0",
 	"description": "A template project for Kabooom.js using Parceljs",
 	"scripts": {
-		"start:space": "parcel serve src/space/index.html -p 3000",
-		"build:space": "parcel build src/space/index.html --dist-dir space",
-		"start:blocks": "parcel serve src/blocks/index.html -p 4000",
-		"build:blocks": "parcel build src/blocks/index.html --dist-dir blocks",
+		"start:space": "parcel serve src/space/index.html src/space/*/index.html -p 3000",
+		"build:space": "parcel build src/space/index.html src/space/*/index.html --dist-dir dist",
+		"start:blocks": "parcel serve src/blocks/index.html src/blocks/*/index.html -p 3000",
+		"build:blocks": "parcel build src/blocks/index.html src/blocks/*/index.html --dist-dir dist",
+		"clear": "rm -rf ./dist && rm -rf ./.parcel-cache",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"browserslist": "> 0.2%",

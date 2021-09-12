@@ -8,6 +8,7 @@ const {
 	loadSprite
 } = k
 
+loadSprite('logo', '/logos/kaboom.png')
 loadSprite('ship', '/assets/playerShip1_red.png')
 loadSprite('bullet', '/assets/laserRed08.png')
 

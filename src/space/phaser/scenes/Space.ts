@@ -17,12 +17,15 @@ export default class Space extends Phaser.Scene
 
 	preload()
 	{
+		this.load.image('logo', '/logos/phaser.png')
 		this.load.image('ship', '/assets/playerShip1_red.png')
 		this.load.image('bullet', '/assets/laserRed08.png')
 	}
 
 	create()
 	{
+		this.add.image(16, 16, 'logo').setOrigin(0)
+		
 		const { width, height } = this.scale
 
 		this.ship = this.physics.add.sprite(width * 0.5, height * 0.5, 'ship')
