@@ -20,12 +20,6 @@ const {
 	rotate
 } = k
 
-function angleToVec2(angle: number) {
-	const vx = Math.cos(-angle)
-	const vy = Math.sin(-angle)
-	return vec2(vx, vy)
-}
-
 type Particle =
 	& GameObj 
 	& PosComp 
@@ -94,7 +88,7 @@ export default function Blocks() {
 		'alien'
 	])
 
-	const box = add([
+	add([
 		pos(width() * 0.5, height() * 0.5),
 		sprite('box'),
 		origin('center'),

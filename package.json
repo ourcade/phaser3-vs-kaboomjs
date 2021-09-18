@@ -7,7 +7,9 @@
 		"build:space": "parcel build src/space/index.html src/space/*/index.html --dist-dir dist",
 		"start:blocks": "parcel serve src/blocks/index.html src/blocks/*/index.html -p 3000",
 		"build:blocks": "parcel build src/blocks/index.html src/blocks/*/index.html --dist-dir dist",
-		"clear": "rm -rf ./dist && rm -rf ./.parcel-cache",
+		"start:astar": "parcel serve src/astar/index.html src/astar/*/index.html -p 3000",
+		"build:astar": "parcel serve src/astar/index.html src/astar/*/index.html -p 3000",
+		"clean": "rm -rf ./dist && rm -rf ./.parcel-cache",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"browserslist": "> 0.2%",
