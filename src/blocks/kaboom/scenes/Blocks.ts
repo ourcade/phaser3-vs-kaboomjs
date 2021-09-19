@@ -1,4 +1,4 @@
-import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, OpacityComp } from 'kaboom'
+import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, OpacityComp, Comp, CharacterRaw, BodyComp } from 'kaboom'
 import k from '../kaboom'
 
 const {
@@ -22,13 +22,20 @@ const {
 	opacity
 } = k
 
-type Particle = Character<
-	| PosComp 
-	| SpriteComp
-	| ScaleComp
-	| OpacityComp
-	| { dir: Vec2, speed: number }
->
+// type Particle = Character<
+// 	| PosComp 
+// 	| SpriteComp
+// 	| ScaleComp
+// 	| OpacityComp
+// 	| { dir: Vec2, speed: number }
+// >
+type Particle = 
+	& CharacterRaw
+	& Omit<PosComp, keyof Comp>
+	& Omit<SpriteComp, keyof Comp>
+	& Omit<ScaleComp, keyof Comp>
+	& Omit<OpacityComp, keyof Comp>
+	& { dir: Vec2, speed: number }
 function explode(x: number, y: number) {
 	const particles: Particle[] = []
 	return {
@@ -46,7 +53,7 @@ function explode(x: number, y: number) {
 						speed: 10
 					}
 				])
-				particles.push(particle as Particle)
+				particles.push(particle as unknown as Particle)
 			}
 		},
 		update() {
@@ -91,7 +98,7 @@ export default function Blocks() {
 		area({}),
 		body(),
 		'alien'
-	])
+	]) as unknown as CharacterRaw & Omit<BodyComp, keyof Comp>
 
 	add([
 		pos(width() * 0.5, height() * 0.5),

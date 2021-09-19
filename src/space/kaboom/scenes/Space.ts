@@ -1,4 +1,4 @@
-import type { CharacterRaw, PosComp, RotateComp } from 'kaboom'
+import type { CharacterRaw, PosComp, RotateComp, ScaleComp, Comp } from 'kaboom'
 import k from '../kaboom'
 
 const {
@@ -117,7 +117,7 @@ export default function Space() {
 		shooter(),
 		// thrust
 		thrust()
-	])
+	]) as unknown as CharacterRaw & Omit<RotateComp, keyof Comp>
 
 	keyDown('left', () => {
 		ship.angle -= 5
