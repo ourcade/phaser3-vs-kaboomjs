@@ -8,7 +8,7 @@
 		"start:blocks": "parcel serve src/blocks/index.html src/blocks/*/index.html -p 3000",
 		"build:blocks": "parcel build src/blocks/index.html src/blocks/*/index.html --dist-dir dist",
 		"start:astar": "parcel serve src/astar/index.html src/astar/*/index.html -p 3000",
-		"build:astar": "parcel serve src/astar/index.html src/astar/*/index.html -p 3000",
+		"build:astar": "parcel build src/astar/index.html src/astar/*/index.html  --dist-dir dist",
 		"clean": "rm -rf ./dist && rm -rf ./.parcel-cache",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -28,6 +28,7 @@
 		"typescript": "^4.3.2"
 	},
 	"dependencies": {
+		"easystarjs": "^0.4.4",
 		"kaboom": "^0.5.1",
 		"phaser": "^3.55.2"
 	},
