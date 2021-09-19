@@ -29,7 +29,7 @@
 	},
 	"dependencies": {
 		"easystarjs": "^0.4.4",
-		"kaboom": "^0.5.1",
+		"kaboom": "^2000.0.0-beta.18",
 		"phaser": "^3.55.2"
 	},
 	"alias": {
