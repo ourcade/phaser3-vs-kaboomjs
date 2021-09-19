@@ -1,4 +1,4 @@
-import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, CharacterRaw } from 'kaboom'
+import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, OpacityComp } from 'kaboom'
 import k from '../kaboom'
 
 const {
@@ -26,6 +26,7 @@ type Particle = Character<
 	| PosComp 
 	| SpriteComp
 	| ScaleComp
+	| OpacityComp
 	| { dir: Vec2, speed: number }
 >
 function explode(x: number, y: number) {
