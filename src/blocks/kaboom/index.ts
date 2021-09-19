@@ -4,7 +4,7 @@ import Blocks from './scenes/Blocks'
 
 const {
 	scene,
-	start,
+	go,
 	loadSprite
 } = k
 
@@ -16,4 +16,4 @@ loadSprite('debris', '/assets/debrisWood_1.png')
 
 scene('blocks', Blocks)
 
-start('blocks')
+go('blocks')
