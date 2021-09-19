@@ -1,9 +1,10 @@
-import type { AreaComp, GameObj, PosComp, RotateComp } from 'kaboom'
+import type { CharacterRaw, PosComp, RotateComp } from 'kaboom'
 import k from '../kaboom'
 
 const {
 	add,
 	sprite,
+	area,
 	pos,
 	width,
 	height,
@@ -13,21 +14,20 @@ const {
 	keyPress,
 	keyRelease,
 	deg2rad,
-	rad2deg,
 	vec2,
 	destroy
 } = k
 
 function angleToVec2(angle: number) {
-	const vx = Math.cos(-angle)
-	const vy = Math.sin(-angle)
+	const vx = Math.cos(deg2rad(angle))
+	const vy = Math.sin(deg2rad(angle))
 	return vec2(vx, vy)
 }
 
 function bullet(vx: number, vy: number) {
 	const velocity = vec2(vx, vy)
 	return {
-		add(this: GameObj) {
+		add(this: CharacterRaw) {
 			setTimeout(() => {
 				destroy(this)
 			}, 500)
@@ -49,7 +49,7 @@ function bullet(vx: number, vy: number) {
 
 function shooter() {
 	return {
-		add(this: RotateComp & AreaComp & PosComp) {
+		add(this: any) {
 			keyPress('space', () => {
 				// showcase this logic
 				const vec = angleToVec2(this.angle)
@@ -77,7 +77,7 @@ function thrust() {
 	let thrusting = false
 	let velocity = vec2(0, 0)
 	return {
-		add(this: PosComp & RotateComp) {
+		add(this: RotateComp) {
 			keyDown('up', () => {
 				const dir = angleToVec2(this.angle)
 				velocity.x += dir.x * acceleration
@@ -110,6 +110,8 @@ export default function Space() {
 	const ship = add([
 		sprite('ship'),
 		pos(width() * 0.5, height() * 0.5),
+		// TODO: param not optional
+		area({}),
 		rotate(0),
 		origin('center'),
 		shooter(),
@@ -118,14 +120,10 @@ export default function Space() {
 	])
 
 	keyDown('left', () => {
-		let deg = rad2deg(ship.angle)
-		deg += 5
-		ship.angle = deg2rad(deg)
+		ship.angle -= 5
 	})
 
 	keyDown('right', () => {
-		let deg = rad2deg(ship.angle)
-		deg -= 5
-		ship.angle = deg2rad(deg)
+		ship.angle += 5
 	})
 }

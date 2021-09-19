@@ -4,7 +4,7 @@ import Space from './scenes/Space'
 
 const {
 	scene,
-	start,
+	go,
 	loadSprite
 } = k
 
@@ -14,4 +14,4 @@ loadSprite('bullet', '/assets/laserRed08.png')
 
 scene('space', Space)
 
-start('space')
+go('space')
