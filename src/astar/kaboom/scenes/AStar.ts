@@ -1,4 +1,4 @@
-import type { CharacterRaw, PosComp, SpriteComp, Comp } from 'kaboom'
+import type { Character, PosComp, SpriteComp, Comp } from 'kaboom'
 import * as EasyStar from 'easystarjs'
 import k from '../kaboom'
 import { TILE_SIZE, Tile, TileSymbol, tileToSymbol } from '../shared'
@@ -134,8 +134,7 @@ export default function AStar() {
 		pos(alignToGrid(width() * 0.5), alignToGrid(height() * 0.5)),
 		sprite('faune'),
 		origin('center')
-	]) as unknown as CharacterRaw & Omit<SpriteComp, keyof Comp> & Omit<PosComp, keyof Comp>
-	// ^ NOTE: there's an error in the type comp merge
+	])
 
 	faune.play('idle-down')
 

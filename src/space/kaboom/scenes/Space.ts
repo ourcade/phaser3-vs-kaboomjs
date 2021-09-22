@@ -1,4 +1,4 @@
-import type { CharacterRaw, PosComp, RotateComp, ScaleComp, Comp } from 'kaboom'
+import type { Character, PosComp, RotateComp, ScaleComp, Comp, AreaComp } from 'kaboom'
 import k from '../kaboom'
 
 const {
@@ -27,7 +27,7 @@ function angleToVec2(angle: number) {
 function bullet(vx: number, vy: number) {
 	const velocity = vec2(vx, vy)
 	return {
-		add(this: CharacterRaw) {
+		add(this: Character) {
 			setTimeout(() => {
 				destroy(this)
 			}, 500)
@@ -49,7 +49,7 @@ function bullet(vx: number, vy: number) {
 
 function shooter() {
 	return {
-		add(this: any) {
+		add(this: Character<RotateComp | AreaComp | PosComp>) {
 			keyPress('space', () => {
 				// showcase this logic
 				const vec = angleToVec2(this.angle)
@@ -117,7 +117,7 @@ export default function Space() {
 		shooter(),
 		// thrust
 		thrust()
-	]) as unknown as CharacterRaw & Omit<RotateComp, keyof Comp>
+	])
 
 	keyDown('left', () => {
 		ship.angle -= 5
