@@ -33,6 +33,8 @@ function explode(x: number, y: number) {
 	const particles: Particle[] = []
 	return {
 		add() {
+			// create 5 sprites using the "debris" image and
+			// randomly adjust their direction and rotation
 			for (let i = 0; i < 5; ++i) {
 				const particle = add([
 					pos(x, y),
@@ -50,6 +52,8 @@ function explode(x: number, y: number) {
 			}
 		},
 		update() {
+			// on each frame, move the particiles by their velocity
+			// and shrink/fade over time
 			for (const particle of particles) {
 				particle.pos.x += particle.dir.x * particle.speed
 				particle.pos.y += particle.dir.y * particle.speed
@@ -59,6 +63,7 @@ function explode(x: number, y: number) {
 			}
 		},
 		destroy() {
+			// cleanup by destroying each created particle
 			for (const particle of particles) {
 				destroy(particle)
 			}
@@ -72,6 +77,7 @@ export default function Blocks() {
 		sprite('logo')
 	])
 
+	// simple floor creation
 	let x = 0
 	for (let i = 0; i < 10; ++i)
 	{
@@ -93,6 +99,7 @@ export default function Blocks() {
 		'alien'
 	])
 
+	// create the box
 	add([
 		pos(width() * 0.5, height() * 0.5),
 		sprite('box'),
@@ -103,6 +110,7 @@ export default function Blocks() {
 	])
 
 	keyPress('space', () => {
+		// jump when press space
 		if (alien.grounded())
 		{
 			alien.jump()
@@ -110,13 +118,16 @@ export default function Blocks() {
 	})
 
 	collides('breakable-box', 'alien', (box) => {
+		// hide the box when alien collides with box
 		box.hidden = true
 		box.solid = false
 
+		// create a new entity of explosion particles
 		const particles = add([
 			explode(box.pos.x, box.pos.y)
 		])
 
+		// bring the box back after 1s and destroy the particles
 		wait(1, () => {
 			destroy(particles)
 			box.hidden = false

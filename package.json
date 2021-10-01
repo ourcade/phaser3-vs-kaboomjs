@@ -1,7 +1,7 @@
 {
 	"name": "phaser3-vs-kaboomjs",
 	"version": "1.0.0",
-	"description": "3 different mechanics done in Phaser 3 and Kaboom.ks",
+	"description": "3 different mechanics done in Phaser 3 and Kaboom.js",
 	"scripts": {
 		"start:space": "parcel serve src/space/index.html src/space/*/index.html -p 3000",
 		"build:space": "parcel build src/space/index.html src/space/*/index.html --dist-dir dist",

@@ -1,8 +1,8 @@
-import type { Character, PosComp, SpriteComp, Comp } from 'kaboom'
 import * as EasyStar from 'easystarjs'
 import k from '../kaboom'
 import { TILE_SIZE, Tile, TileSymbol, tileToSymbol } from '../shared'
 
+// define level for EasyStar.js
 const level = [
 	[Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, 	Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass],
 	[Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, 	Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass],
@@ -36,10 +36,13 @@ const level = [
 	[Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, 	Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 	Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 			Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 		Tile.Grass, 	Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass, Tile.Grass],
 ]
 
+// convert to an array of strings for Kaboom.js
 const levelAsString = level.map(row => row.map(tileToSymbol).join(''))
 
+// tile space <> world space conversions
 function tileToWorld(value: number)
 {
+	// we are assuming origin 'center' for this or (0.5, 0.5)
 	return (value * TILE_SIZE) + (TILE_SIZE * 0.5)
 }
 
@@ -48,6 +51,7 @@ function worldToTile(value: number)
 	return Math.floor(value / TILE_SIZE)
 }
 
+// convenience to automatically align a given x/y value to grid
 function alignToGrid(value: number)
 {
 	return tileToWorld(worldToTile(value))
@@ -130,6 +134,7 @@ export default function AStar() {
 		any() { return undefined }
 	})
 
+	// see video on character animations
 	const faune = add([
 		pos(alignToGrid(width() * 0.5), alignToGrid(height() * 0.5)),
 		sprite('faune'),
@@ -138,18 +143,27 @@ export default function AStar() {
 
 	faune.play('idle-down')
 
+	// path of tiles to move through
 	let path: { x: number, y: number }[] = []
+
+
 	const easystar = new EasyStar.js()
 	easystar.setGrid(level)
+	// set tiles that can be walked on
 	easystar.setAcceptableTiles([Tile.Grass, Tile.Grass2])
+	// give a different cost to a specific tile
 	easystar.setTileCost(Tile.Grass2, 5)
 
 	mouseClick(pointer => {
+		// get the tile positions of our character
 		const sx = worldToTile(faune.pos.x)
 		const sy = worldToTile(faune.pos.y)
+
+		// get the tile positions of our click
 		const tx = worldToTile(pointer.x)
 		const ty = worldToTile(pointer.y)
 
+		// have easystar find the path from (sx, sy) to (tx, ty)
 		easystar?.findPath(sx, sy, tx, ty, (points) => {
 			path = points
 		})
@@ -157,6 +171,7 @@ export default function AStar() {
 	})
 
 	const determineMovement = () => {
+		// always start out not moving
 		const movement = {
 			left: false,
 			right: false,
@@ -164,25 +179,36 @@ export default function AStar() {
 			down: false
 		}
 
+		// nothing in the path so don't move
 		if (path.length <= 0)
 		{
 			return movement
 		}
 
+		// look at the first element to know where to go next
 		const target = path[0]
-		const { x, y } = faune.pos
-		const tx = (target.x * 16) + 8
-		const ty = (target.y * 16) + 8
 
+		// get the world position of the target tile
+		const { x, y } = faune.pos
+		const tx = tileToWorld(target.x)
+		const ty = tileToWorld(target.y)
+
+		// get the difference between where character is and where we should go
 		const dx = Math.abs(x - tx)
 		const dy = Math.abs(y - ty)
 
 		if (dx <= 0 && dy <= 0)
 		{
+			// we've arrived at the target if no difference
+			// remove the first element in the path array
+			// return starting movement object
 			path.shift()
 			return movement
 		}
 
+		// determine which direction we should be moving in
+		// this simulates only moving left, right, up, or down
+		// so the character will not move diagonally
 		if (x > tx)
 		{
 			movement.left = true
@@ -204,6 +230,7 @@ export default function AStar() {
 	}
 
 	faune.action(() => {
+		// determine where we should move each frame
 		const { left, right, up, down } = determineMovement()
 
 		const speed = 2
@@ -211,13 +238,20 @@ export default function AStar() {
 
 		if (left)
 		{
+			// if should move left and not already in the
+			// walk-side animation then play it
 			if (curAnim !== 'walk-side')
 			{
 				faune.play('walk-side')
 			}
+
+			// flip which way our character is facing when moving left
 			faune.flipX(true)
+
+			// move left by speed
 			faune.pos.x -= speed
 		}
+		// right, up, and down animations all work like left above
 		else if (right)
 		{
 			if (curAnim !== 'walk-side')
@@ -245,7 +279,10 @@ export default function AStar() {
 		}
 		else
 		{
-			const direction = faune.curAnim().split('-').pop() ?? 'down'
+			// once we stop, use the curAnim to get the last direction
+			// we were moving in
+			// then create the proper idle animation using that direction
+			const direction = curAnim.split('-').pop() ?? 'down'
 			faune.play(`idle-${direction}`)
 		}
 	})

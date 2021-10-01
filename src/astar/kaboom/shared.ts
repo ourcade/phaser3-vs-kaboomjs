@@ -46,6 +46,7 @@ export enum TileSymbol
 	WallBotRight = 'r',
 }
 
+// mapping of Tile number to Tile string character
 const convertToSymbol = {
 	[Tile.Grass]: TileSymbol.Grass,
 	[Tile.Grass2]: TileSymbol.Grass2,
@@ -68,6 +69,8 @@ const convertToSymbol = {
 	[Tile.WallBotRight]: TileSymbol.WallBotRight,
 }
 
+// this is used to convert the numerical level used by easystar.js
+// to a string based level definition used by Kaboom.js
 export function tileToSymbol(tile: Tile) {
 	return convertToSymbol[tile]
 }

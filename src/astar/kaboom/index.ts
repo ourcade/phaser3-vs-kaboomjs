@@ -12,7 +12,11 @@ const {
 
 loadSprite('logo', '/logos/kaboom.png')
 
+// load level tiles sheet and define each tile to be used
 loadSpriteAtlas('/assets/tiles.png', {
+	// these enums are used so that we can more easily
+	// change the string character to represent each
+	// (x, y, width, height) is the position in the tile sheet where this frame is
 	[TileSymbol.Grass]: {
 		x: 144,
 		y: 64,
@@ -129,6 +133,7 @@ loadSpriteAtlas('/assets/tiles.png', {
 	},
 })
 
+// load character spritesheet and create animations
 loadSpriteAtlas('/assets/faune.png', {
 	'faune': {
 		x: 0,
@@ -140,7 +145,8 @@ loadSpriteAtlas('/assets/faune.png', {
 			'walk-down': { from: 0, to: 7, loop: true, speed: 15 },
 			'walk-side': { from: 8, to: 15, loop: true, speed: 15 },
 			'walk-up': { from: 16, to: 23, loop: true, speed: 15 },
-			// NOTE: onEnd error when loop not set
+			// NOTE: onEnd error when loop not set even though we don't need
+			// to loop for a 1 frame animation
 			'idle-up': { from: 19, to: 19, loop: true },
 			'idle-side': { from: 10, to: 10, loop: true },
 			'idle-down': { from: 1, to: 1, loop: true },
