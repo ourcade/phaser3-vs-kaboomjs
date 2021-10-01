@@ -204,7 +204,7 @@ export default class AStar extends Phaser.Scene
 		if (dx <= 0 && dy <= 0)
 		{
 			this.path.shift()
-			return movement
+			return this.determineMovement()
 		}
 
 		if (x > tx)

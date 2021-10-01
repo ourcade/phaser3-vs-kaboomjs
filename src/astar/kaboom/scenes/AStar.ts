@@ -146,7 +146,6 @@ export default function AStar() {
 	// path of tiles to move through
 	let path: { x: number, y: number }[] = []
 
-
 	const easystar = new EasyStar.js()
 	easystar.setGrid(level)
 	// set tiles that can be walked on
@@ -203,7 +202,11 @@ export default function AStar() {
 			// remove the first element in the path array
 			// return starting movement object
 			path.shift()
-			return movement
+
+			// do this again so that we don't have a gap of movement
+			// after we get to a tile on the path; this makes sure we
+			// keep moving smoothly
+			return determineMovement()
 		}
 
 		// determine which direction we should be moving in
