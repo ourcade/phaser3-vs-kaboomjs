@@ -63,6 +63,10 @@ Check out the [Ourcade channel page for even more](https://www.youtube.com/ourca
 
 Check out the [full blog for more](https://blog.ourcade.co/) including a pair of free ebooks!
 
+## Assets
+
+The game art from this example was provided by [Kenney.nl](http://kenney.nl) and [ansimuz](https://ansimuz.itch.io/legend-of-faune).
+
 ## License
 
 [MIT License](https://github.com/ourcade/phaser3-vs-kaboomjs/blob/master/LICENSE)
