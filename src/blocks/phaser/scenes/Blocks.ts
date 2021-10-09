@@ -60,8 +60,13 @@ export default class Blocks extends Phaser.Scene
 		}
 	}
 
-	private handleBreakBox(b: Phaser.GameObjects.GameObject, alien: Phaser.GameObjects.GameObject)
+	private handleBreakBox(b: Phaser.GameObjects.GameObject, a: Phaser.GameObjects.GameObject)
 	{
+		const alien = a as Phaser.Physics.Arcade.Sprite
+		if (!alien.body.touching.up) {
+			return
+		}
+		
 		const box = b as Phaser.Physics.Arcade.Sprite
 		box.disableBody(true, true)
 

@@ -1,4 +1,4 @@
-import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, OpacityComp, Comp, BodyComp } from 'kaboom'
+import type { Character, Vec2, SpriteComp, ScaleComp, PosComp, OpacityComp } from 'kaboom'
 import k from '../kaboom'
 
 const {
@@ -11,7 +11,6 @@ const {
 	origin,
 	body,
 	keyPress,
-	collides,
 	wait,
 	vec2,
 	rand,
@@ -19,7 +18,7 @@ const {
 	scale,
 	rotate,
 	area,
-	opacity
+	opacity,
 } = k
 
 type Particle = Character<
@@ -117,7 +116,11 @@ export default function Blocks() {
 		}
 	})
 
-	collides('breakable-box', 'alien', (box) => {
+	alien.collides('breakable-box', (box, side) => {
+		if (side !== 'top') {
+			return
+		}
+
 		// hide the box when alien collides with box
 		box.hidden = true
 		box.solid = false
