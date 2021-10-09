@@ -41,6 +41,8 @@ If the running example doesn't appear to change then try running the `clean` scr
 npm run clean
 ```
 
+You can also try a hard reload by holding shift and then pressing the refresh button just in case things are cached by the browser.
+
 ## Resources
 
 Check out the [Phaser 3 website](https://phaser.io/) and the [Kaboom.js](https://kaboomjs.com/) website for more on each library.
