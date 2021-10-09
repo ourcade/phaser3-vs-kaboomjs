@@ -41,6 +41,28 @@ If the running example doesn't appear to change then try running the `clean` scr
 npm run clean
 ```
 
+## Resources
+
+Check out the [Phaser 3 website](https://phaser.io/) and the [Kaboom.js](https://kaboomjs.com/) website for more on each library.
+
+For more tutorials on making games with Phaser 3 or Kaboom.js, check out these Ourcade resources:
+
+### From YouTube
+
+- [Getting Started with Phaser 3.50+](https://youtu.be/3Q5jP85PXrE)
+- [Making Your First Phaser 3 Game with TypeScript](https://www.youtube.com/playlist?list=PLumYWZ2t7CRvLU1E-n6VDiOdfEeRQSXPE)
+- [5 Tips for Getting Started with Kaboom.js](https://youtu.be/5F7eaCcZFTk)
+- [Snake Game with Kaboom.js](https://www.youtube.com/playlist?list=PLumYWZ2t7CRui4Td_ZYDYc5jTDmisYqid)
+
+Check out the [Ourcade channel page for even more](https://www.youtube.com/ourcadehq) including ECS in Phaser 3, custom components in Kaboom.js, and multiplayer games with Colyseus. Be sure to subscribe!
+
+### From the Blog
+
+- [Making Your First Phaser 3 Game in Modern JavaScript](https://blog.ourcade.co/series/making-your-first-phaser-3-game-in-modern-javascript/)
+- [5 Tips for Getting Started with Kaboom.js](https://blog.ourcade.co/posts/2021/5-tips-getting-started-kaboom-js/)
+
+Check out the [full blog for more](https://blog.ourcade.co/) including a pair of free ebooks!
+
 ## License
 
 [MIT License](https://github.com/ourcade/phaser3-vs-kaboomjs/blob/master/LICENSE)
