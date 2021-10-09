@@ -1,3 +1,5 @@
+![phaser3-vs-kaboomjs](https://user-images.githubusercontent.com/2236153/136664664-1e280a4b-946b-418f-9afd-30e8cee315a1.png)
+
 # Phaser 3 vs Kaboom.js in 3 Examples
 > Compare and contrast 2 different ways to create the same mechanics
 
@@ -28,7 +30,7 @@ Then for each example run one of the following at a time:
 ```
 npm run start:space 	# for the space example
 npm run start:blocks	# for the blocks example
-npm run start:astar		# for the astar example
+npm run start:astar	# for the astar example
 ```
 
 Go to http://localhost:3000 to see the example with a side-by-side comparison.
