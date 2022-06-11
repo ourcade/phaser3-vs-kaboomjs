@@ -15,7 +15,7 @@ This repository contains 3 game mechanic examples using Phaser 3 and Kaboom.js.
 
 Each example has a Phaser 3 version and a Kaboom.js version as a means to compare and contrast a class-based paradigm against a functional, component-based paradigm.
 
-[Check out a video going over the code on YouTube!](https://youtu.be/INiqsyOHe4Y)
+[Check out a video going over the code on YouTube!](https://youtu.be/g4slFm0lows)
 
 ## Getting Started
 
